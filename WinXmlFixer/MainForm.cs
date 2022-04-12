@@ -127,8 +127,12 @@ namespace WinXmlFixer
         {
             var fileName = Path.GetFileName(path);
             var doc = new XmlDocument();
-            doc.LoadXml(File.ReadAllText(path));
-            var emptyMaterialNodes = doc.SelectNodes("//Orders/Order[@ProjectReference='Webshop' or ProjectReference='Webshop BE']/Ordercontent/Articles/preceding-sibling::Material[1][not(descendant::*)]");
+            doc.LoadXml(File.ReadAllText(path));//ProjectReference="Webshop BE"
+            //var emptyMaterialNodes = doc.SelectNodes("//Orders/Order[@ProjectReference='Webshop' or ProjectReference='Webshop BE']/Ordercontent/Articles/preceding-sibling::Material[1][not(descendant::*)]");
+            var emptyMaterialNodes = doc.SelectNodes("//Orders/Order[@ProjectReference='Webshop' or @ProjectReference='Webshop BE']/Ordercontent/Articles/preceding-sibling::Material[1][not(descendant::*)]");
+            //var orders = doc.SelectNodes("//Orders/Order");
+            //var t = orders[1].Attributes["ProjectReference"].Value.Equals("Webshop BE");  //Webshop BE
+
             if (emptyMaterialNodes == null) throw new KnownException($"Null orders");
             if (emptyMaterialNodes.Count == 0) return false;
             foreach (XmlNode order in emptyMaterialNodes)

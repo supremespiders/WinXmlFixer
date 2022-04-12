@@ -265,7 +265,7 @@
             this.Controls.Add(this.panelControl1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
-            this.Text = "WinXmlFixer 1.01";
+            this.Text = "WinXmlFixer 1.02";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
